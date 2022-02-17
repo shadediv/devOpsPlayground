@@ -8,7 +8,7 @@ pipeline {
     agent any
     stages {
         stage('Build') {
-            when { anyOf { branch "master"; branch "dev" }}
+            when { anyOf { branch "master"; branch "shadyASH" }}
             steps {
                 echo 'Building..'
                 sh '''

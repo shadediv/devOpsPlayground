@@ -21,7 +21,7 @@ pipeline {
             }
         }
         stage('Test the tests') {
-            when(env.CHANGE_ID){
+            when{env.CHANGE_ID}{
                 steps {
                     echo 'Testing..'
                     sh "cd youtubeBot"

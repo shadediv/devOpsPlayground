@@ -21,16 +21,18 @@ pipeline {
             }
         }
         stage('Test the tests') {
-            when{env.CHANGE_ID}{
+            when{env.CHANGE_ID}
                 steps {
                     echo 'Testing..'
                     sh "cd youtubeBot"
                 }
-            }else{
-                echo 'Testing..'
-                sh "echo well its not a pull request"
-                sh "exit 1"
-            }
+            else
+                steps {
+                    echo 'Testing..'
+                    sh "echo well its not a pull request"
+                    sh "exit 1"
+                }
+
         }
         stage('Deploy the deployment') {
             steps {

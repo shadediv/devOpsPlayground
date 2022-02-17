@@ -22,10 +22,10 @@ pipeline {
         }
         stage('Test the tests') {
             when{env.CHANGE_ID}
-                steps {
-                    echo 'Testing..'
-                    sh "cd youtubeBot"
-                }
+            steps {
+                echo 'Testing..'
+                sh "cd youtubeBot"
+            }
         }
         stage('Deploy the deployment') {
             steps {

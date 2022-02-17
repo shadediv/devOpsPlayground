@@ -15,8 +15,8 @@ pipeline {
                 cd simple_webserver
                 aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin ${DockerUrl}
                 docker build -t ${Image}:${tag} .
-                docker tag ${Image}:${tag} ${DockerUrl}/${Image}:${tag}
-                docker push ${Dockerurl}/${Image}:${tag}
+                docker tag ${Image}:${tag} ${DockerUrl}/ecr-shadyash:latest${tag}
+                docker push ${Dockerurl}/ecr-shadyash:latest${tag}
                 '''
             }
         }

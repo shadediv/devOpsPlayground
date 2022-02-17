@@ -2,7 +2,7 @@ pipeline {
 
     environment{
         DockerUrl="352708296901.dkr.ecr.eu-west-2.amazonaws.com"
-        Image="simple_web_server_shadyash"
+        Image="ecr-shadyash"
     }
 
     agent any

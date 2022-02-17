@@ -26,13 +26,6 @@ pipeline {
                     echo 'Testing..'
                     sh "cd youtubeBot"
                 }
-            else
-                steps {
-                    echo 'Testing..'
-                    sh "echo well its not a pull request"
-                    sh "exit 1"
-                }
-
         }
         stage('Deploy the deployment') {
             steps {

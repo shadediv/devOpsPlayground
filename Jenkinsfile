@@ -25,7 +25,7 @@ pipeline {
             when{ changeRequest() }
             steps {
                 echo 'Testing..'
-                sh "cd youtubeBot"
+                sh "exit 1"
             }
         }
         stage('Deploy the deployment') {

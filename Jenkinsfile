@@ -26,14 +26,9 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh '''
-                pip3 install -r simple_webserver/requirements.txt
-                python3 -m unittest simple_webserver/tests/test_flask_web.py
+                #pip3 install -r simple_webserver/requirements.txt
+                #python3 -m unittest simple_webserver/tests/test_flask_web.py
                 '''
-            }
-        }
-        stage('Deploy the deployment') {
-            steps {
-                echo 'Deploying....'
             }
         }
          stage('Deploy - dev') {
@@ -47,13 +42,13 @@ pipeline {
             }
         }
         stage('Provision') {
-            when { changeset "infra/**" }
-            input {
-                message "Do you want to proceed for infrastructure provisioning?"
-            }
+            when { allOf { branch "dev"; changeset "infra/**" } }
             steps {
+                sh "cd infra"
+                sh "cd dev"
+                sh "terraform init"
+                sh "terraform plan"
                 // copyArtifacts filter: 'infra/dev/terraform.tfstate', projectName: '${JOB_NAME}'
-                echo 'Provisioning....'
                 // archiveArtifacts artifacts: 'infra/dev/terraform.tfstate', onlyIfSuccessful: true
             }
         }

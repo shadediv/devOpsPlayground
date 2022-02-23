@@ -44,10 +44,10 @@ pipeline {
         stage('Provision') {
             when { allOf { branch "dev"; changeset "infra/**" } }
             steps {
-                sh "#cd infra"
-                sh "#cd dev"
-                sh "#terraform init"
-                sh "#terraform plan"
+                sh "cd infra"
+                sh "cd dev"
+                sh "terraform init"
+                sh "terraform plan"
                 // copyArtifacts filter: 'infra/dev/terraform.tfstate', projectName: '${JOB_NAME}'
                 // archiveArtifacts artifacts: 'infra/dev/terraform.tfstate', onlyIfSuccessful: true
             }

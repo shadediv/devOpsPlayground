@@ -32,5 +32,26 @@ pipeline {
                 echo 'Deploying....'
             }
         }
+         stage('Deploy - dev') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+        stage('Deploy - prod') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+        stage('Provision') {
+            when { changeset "infra/**" }
+            input {
+                message "Do you want to proceed for infrastructure provisioning?"
+            }
+            steps {
+                // copyArtifacts filter: 'infra/dev/terraform.tfstate', projectName: '${JOB_NAME}'
+                echo 'Provisioning....'
+                // archiveArtifacts artifacts: 'infra/dev/terraform.tfstate', onlyIfSuccessful: true
+            }
+        }
     }
 }

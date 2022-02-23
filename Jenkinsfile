@@ -25,7 +25,11 @@ pipeline {
             when{ changeRequest() }
             steps {
                 echo 'Testing..'
-                sh 'python3 -m unittest simple_webserver/tests/test_flask_web.py'
+                sh '''
+                cd simple_webserver
+                pip3 install flask
+                python3 -m unittest simple_webserver/tests/test_flask_web.py
+                '''
             }
         }
         stage('Deploy the deployment') {

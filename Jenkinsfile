@@ -25,12 +25,31 @@ pipeline {
             when{ changeRequest() }
             steps {
                 echo 'Testing..'
-                sh "cd youtubeBot"
+                sh '''
+                #pip3 install -r simple_webserver/requirements.txt
+                #python3 -m unittest simple_webserver/tests/test_flask_web.py
+                '''
             }
         }
-        stage('Deploy the deployment') {
+         stage('Deploy - dev') {
             steps {
                 echo 'Deploying....'
+            }
+        }
+        stage('Deploy - prod') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+        stage('Provision') {
+            when { allOf { branch "dev"; changeset "infra/**" } }
+            steps {
+                sh "cd infra"
+                sh "cd dev"
+                sh "terraform init"
+                sh "terraform plan"
+                // copyArtifacts filter: 'infra/dev/terraform.tfstate', projectName: '${JOB_NAME}'
+                // archiveArtifacts artifacts: 'infra/dev/terraform.tfstate', onlyIfSuccessful: true
             }
         }
     }

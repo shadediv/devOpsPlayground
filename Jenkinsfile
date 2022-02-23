@@ -28,7 +28,7 @@ pipeline {
                 sh '''
                 cd simple_webserver
                 pip3 install -r requirements.txt
-                python3 -m unittest simple_webserver/tests/test_flask_web.py
+                python3 -m unittest tests/test_flask_web.py
                 '''
             }
         }

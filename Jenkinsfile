@@ -18,7 +18,7 @@ pipeline {
                 #docker build -t ${Image}:${tag} .
                 #docker tag ${Image}:${tag} ${DockerUrl}/${Image}:${tag}
                 #docker push ${DockerUrl}/${Image}:${tag}
-                echo ec2-metadata
+                ec2-metadata
                 '''
             }
         }

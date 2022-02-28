@@ -5,7 +5,7 @@ pipeline {
         Image="ecr-shadyash"
     }
 
-    agent any
+    agent { "EC2FleetCloud-shadyash" }
     stages {
         stage('Build') {
             when { anyOf { branch "master"; branch "dev" }}
@@ -18,6 +18,7 @@ pipeline {
                 #docker build -t ${Image}:${tag} .
                 #docker tag ${Image}:${tag} ${DockerUrl}/${Image}:${tag}
                 #docker push ${DockerUrl}/${Image}:${tag}
+                echo ec2-metadata
                 '''
             }
         }

@@ -5,7 +5,7 @@ pipeline {
         Image="ecr-shadyash"
     }
 
-    agent { "EC2FleetCloud-shadyash" }
+    agent { label "EC2FleetCloud-shadyash" }
     stages {
         stage('Build') {
             when { anyOf { branch "master"; branch "dev" }}

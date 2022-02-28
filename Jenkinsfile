@@ -13,12 +13,11 @@ pipeline {
                 echo 'Building..'
                 sh '''
                 tag="${BRANCH_NAME}_${BUILD_NUMBER}"
-                #cd simple_webserver
-                #aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin ${DockerUrl}
-                #docker build -t ${Image}:${tag} .
-                #docker tag ${Image}:${tag} ${DockerUrl}/${Image}:${tag}
-                #docker push ${DockerUrl}/${Image}:${tag}
-                ec2-metadata
+                cd simple_webserver
+                aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin ${DockerUrl}
+                docker build -t ${Image}:${tag} .
+                docker tag ${Image}:${tag} ${DockerUrl}/${Image}:${tag}
+                docker push ${DockerUrl}/${Image}:${tag}
                 '''
             }
         }

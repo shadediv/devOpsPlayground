@@ -17,7 +17,7 @@ pipeline {
                 sh '''
 
 
-                #build docker image
+                #**** build docker image ****
                 ec2-metadata
                 #tag="${BRANCH_NAME}_${BUILD_NUMBER}"
                 #cd simple_webserver
@@ -27,13 +27,13 @@ pipeline {
                 #docker push ${DockerUrl}/${Image}:${tag}
 
 
-                #build python package artifact
-                cd package_demo
-                pip3 install wheel
-                python3 setup.py sdist bdist_wheel
-                pip3 install twine
-                aws codeartifact login --tool twine --repository CodeArtifactRepo-shadyash --domain artifactory-shadyash --domain-owner 352708296901 --region eu-west-2
-                python3 -m twine upload dist/* --repository codeartifact
+                #**** build python package artifact ****
+                #cd package_demo
+                #pip3 install wheel
+                #python3 setup.py sdist bdist_wheel
+                #pip3 install twine
+                #aws codeartifact login --tool twine --repository CodeArtifactRepo-shadyash --domain artifactory-shadyash --domain-owner 352708296901 --region eu-west-2
+                #python3 -m twine upload dist/* --repository codeartifact
                 '''
             }
         }

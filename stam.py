@@ -4,4 +4,6 @@ for x in range(10):
     print("hello world")
     print("hello world fxdx")
     print("hello world fxdx")
+    print("hello world fxdx")
+    print("hello world fxdx")
 

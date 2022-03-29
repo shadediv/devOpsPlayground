@@ -18,7 +18,7 @@ pipeline {
 
 
                 #**** build docker image ****
-                ec2-metadata
+                #ec2-metadata
                 #tag="${BRANCH_NAME}_${BUILD_NUMBER}"
                 #cd simple_webserver
                 #aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin ${DockerUrl}
